@@ -1,0 +1,11 @@
+---
+const { items } = Astro.props;
+---
+<nav class="wrap breadcrumbs" aria-label="Breadcrumb">
+  {items.map((it, i) => (
+    <>
+      {i > 0 && <span>/</span>}
+      {i === items.length - 1 ? <span>{it.name}</span> : <a href={it.url}>{it.name}</a>}
+    </>
+  ))}
+</nav>

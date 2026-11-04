@@ -1,0 +1,30 @@
+---
+import { tgPlain } from "../lib/tg";
+---
+<header>
+  <div class="wrap header-inner">
+    <a class="brand" href="/">THE PEPTIDE DESK</a>
+    <nav aria-label="Primary">
+      <a href="/peptides/bpc-157/">Peptides</a>
+      <a href="/locations/france/">Locations</a>
+      <a href="/verify/">Verify</a>
+      <a href="/coa/">COA</a>
+      <a href="/shipping/">Shipping</a>
+      <a href="/legality/">Legality</a>
+      <a href="/dealers/">Dealers</a>
+      <a href="/faq/">FAQ</a>
+    </nav>
+    <a class="btn header-cta" href={tgPlain()} rel="nofollow noopener" target="_blank">Telegram →</a>
+  </div>
+</header>
+
+<style>
+  header { border-bottom: 2px solid var(--ink); position: sticky; top: 0; background: #fff; z-index: 40; }
+  .header-inner { display: flex; align-items: center; gap: 20px; padding: 12px 20px; }
+  .brand { font-family: var(--mono); font-weight: 700; letter-spacing: 0.08em; font-size: 0.86rem; border: 0; white-space: nowrap; }
+  nav { display: none; gap: 16px; font-size: 0.86rem; flex: 1; }
+  nav a { border-bottom: 2px solid transparent; }
+  nav a:hover { border-bottom-color: var(--ink); }
+  .header-cta { padding: 9px 14px; font-size: 0.82rem; margin-left: auto; }
+  @media (min-width: 900px) { nav { display: flex; } }
+</style>

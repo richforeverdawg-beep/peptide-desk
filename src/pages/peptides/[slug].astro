@@ -1,0 +1,177 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CTA from "../../components/CTA.astro";
+import FAQ from "../../components/FAQ.astro";
+import CompareTable from "../../components/CompareTable.astro";
+import SiblingLinks from "../../components/SiblingLinks.astro";
+import { pillars, bySlug } from "../../data/peptides";
+import { countries, hubs } from "../../data/places";
+import { band } from "../../lib/pricing";
+import { orderLink } from "../../lib/tg";
+import { clampTitle, clampMeta } from "../../lib/text";
+import { breadcrumbs, faqPage, offer } from "../../lib/schema";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return pillars.map((p) => ({ params: { slug: p.slug }, props: { peptide: p } }));
+}
+
+const { peptide } = Astro.props;
+const path = `/peptides/${peptide.slug}/`;
+const ref = countries[0];
+const b = band(peptide.priceLow, peptide.priceHigh, ref);
+
+const title = clampTitle(
+  `Buy ${peptide.name} on Telegram — COA-Verified, ${b.compact}/Vial`,
+  `Buy ${peptide.name} on Telegram — COA-Verified`
+);
+const description = clampMeta(
+  `Buy ${peptide.name} on Telegram from a verified dealer. ${b.compact} per ${peptide.vial}, third-party COA on every batch, cold-chain EU dispatch in 2-5 days. No cart.`
+);
+
+const faqs = [
+  {
+    q: `Is ${peptide.name} on Telegram cheaper than a webshop?`,
+    a: `Yes, by roughly 40 to 60 percent on the same vial. Webshops price in card fees, affiliate commission and warehouse overhead. We quote the band directly: ${b.compact}.`,
+  },
+  {
+    q: `Do I need a prescription for ${peptide.name}?`,
+    a: `No. It is supplied as a research chemical, not a licensed medicine. Personal quantities clear without one in every country we ship to.`,
+  },
+  {
+    q: `How fast does ${peptide.name} ship?`,
+    a: `Two to five working days inside the EU, cold-packed, tracked, dispatched inside 24 hours of payment. Switzerland, the UK, the UAE, the US and Canada run longer and are declared.`,
+  },
+  {
+    q: `What batch is ${peptide.name} from?`,
+    a: `Every vial carries a batch number and every batch has a third-party PDF COA with the lab name on it. Ask for the COA for the exact batch you are quoted before paying.`,
+  },
+  {
+    q: `What does ${peptide.name} stack with?`,
+    a: `${peptide.siblings.map((s) => bySlug(s).name).join(" and ")}. Both are in stock most weeks and both are quoted in the same chat.`,
+  },
+  {
+    q: `Is ${peptide.name} the same as the pharmacy version?`,
+    a: `Same molecule, different paperwork. Pharmacy product is licensed and dispensed against a prescription at three to five times the price. Ours is a research chemical with a lab COA.`,
+  },
+];
+
+const schema = [
+  breadcrumbs([
+    { name: "Home", url: "/" },
+    { name: "Peptides", url: "/peptides/bpc-157/" },
+    { name: peptide.name, url: path },
+  ]),
+  faqPage(faqs),
+  offer({
+    name: `${peptide.name} ${peptide.vial}`,
+    url: path,
+    low: String(peptide.priceLow),
+    high: String(peptide.priceHigh),
+    currency: "EUR",
+    place: "the EU",
+    days: "2-5 days",
+  }),
+];
+---
+
+<Base
+  title={title}
+  description={description}
+  path={path}
+  schema={schema}
+  stickySrc={path}
+  imageAlt={`${peptide.name} lyophilised vial with batch COA on a black desk`}
+>
+  <Breadcrumbs items={[{ name: "Home", url: "/" }, { name: "Peptides", url: "/peptides/bpc-157/" }, { name: peptide.name, url: path }]} />
+
+  <section>
+    <p class="eyebrow">{peptide.vial} · {b.compact} · EU cold-chain</p>
+    <h1>Buy {peptide.name} on Telegram</h1>
+    <p class="lede">
+      {peptide.hook} Band is {b.compact} per {peptide.vial}, third-party COA on the batch, cold-packed and
+      dispatched inside 24 hours. You order by message, not by cart — the tradeoff being you have to check the
+      batch number we send, which takes ten seconds and is the whole point of buying from a named desk instead of
+      a channel.
+    </p>
+    <p><a class="btn" href={orderLink(path, peptide.name)} rel="nofollow noopener" target="_blank">Message for the {peptide.name} price →</a></p>
+    <div class="trust-bar">
+      <span>Batch COA on file</span>
+      <span>{b.compact} band</span>
+      <span>2-5 day EU delivery</span>
+      <span>Reship on seizure</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>What {peptide.name} is</h2>
+    <p>{peptide.what}</p>
+    <p>
+      It is sold as a research chemical, so nothing is dispensed against a prescription and the label says
+      laboratory use. Same molecule as the licensed version, different paperwork, roughly a third of the price.
+    </p>
+  </section>
+
+  <section>
+    <h2>{peptide.name} price</h2>
+    <p>
+      {b.low} to {b.high} per {peptide.vial}, EUR, before shipping. That is the real quoted range, not a teaser.
+      Webshops list the same vial far higher because they price in card fees and warehouse overhead we do not
+      carry. The band is wide because two labs supply it and both are legitimately different products.
+    </p>
+    <p class="mono">Prices move with batch. Last verified {new Date().toISOString().slice(0, 10)}.</p>
+  </section>
+
+  <section>
+    <h2>How to order {peptide.name}</h2>
+    <ol class="steps">
+      <li>Message @donjuanjodyy with "{peptide.name}" and your country.</li>
+      <li>Get the live price, the batch ID and the COA for that batch.</li>
+      <li>Pay by SEPA, card, BTC or USDT.</li>
+      <li>Tracking in the same chat, same day.</li>
+      <li>Match the batch on arrival. Mismatch, message us.</li>
+    </ol>
+  </section>
+
+  <CTA
+    src={path}
+    label={`${peptide.name} pillar mid`}
+    heading={`${peptide.name} — price and COA in 90 seconds`}
+    body="Send one message with your country. You get the live band, the batch ID and the matching third-party COA."
+  />
+
+  <section>
+    <h2>{peptide.name} vs its two closest siblings</h2>
+    <p>Compare on cost and on what people actually use it for, not on marketing.</p>
+    <CompareTable main={peptide} place={ref} />
+  </section>
+
+  <section>
+    <h2>Where we ship {peptide.name}</h2>
+    <div class="grid grid--4" style="gap:10px">
+      {countries.map((c) => (
+        <a class="chip" href={`/buy/${peptide.slug}-on-telegram-in-${c.slug}/`}>{c.name}</a>
+      ))}
+    </div>
+    <p class="mono" style="margin-top:14px">Country hubs: {hubs.map((h) => <a href={`/locations/${h.slug}/`}>{h.name} </a>)}</p>
+  </section>
+
+  <FAQ items={faqs} heading={`${peptide.name} — questions`} />
+
+  <SiblingLinks
+    title="Other peptides on this desk"
+    links={peptide.siblings.map((s) => ({ name: bySlug(s).name, url: `/peptides/${s}/` }))}
+  />
+
+  <CTA
+    src={path}
+    label={`${peptide.name} pillar footer`}
+    heading={`Order ${peptide.name} on Telegram`}
+    body={`${b.compact} per ${peptide.vial}. Cold-chain packing, batch COA, reship on seizure.`}
+    cta="OPEN TELEGRAM →"
+  />
+
+  <p class="mono">Research chemical. Not a pharmacy. Not medical advice.</p>
+</Base>

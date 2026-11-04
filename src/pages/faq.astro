@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import FAQ from "../components/FAQ.astro";
+import CTA from "../components/CTA.astro";
+import { breadcrumbs, faqPage } from "../lib/schema";
+
+const faqs = [
+  { q: "Is buying peptides on Telegram safe?", a: "Safer than a webshop with no history, if you do five checks first. Named handle, batch COA before payment, months of chat history, dated vouch screenshots, written reship policy. Without those five it is a coin flip." },
+  { q: "How do I buy peptides on Telegram?", a: "Message the handle, name the peptide and the country, get a price and a batch ID in 90 seconds, check the COA, pay, receive tracking the same day. No account and no cart." },
+  { q: "Which Telegram peptide dealer is legit?", a: "The one that names a lab and a batch and sends the matching COA before you pay. Anyone who cannot do that in one message is not one." },
+  { q: "Do you ship to France, Germany and the rest of the EU?", a: "Yes, fifteen countries. Intra-EU clears undeclared with no customs and no duty. Switzerland, the UK, the UAE, the US and Canada are declared as research chemicals." },
+  { q: "Why is Telegram cheaper than a peptide website?", a: "No card processing on most orders, no affiliate layer, no warehouse overhead. A webshop marks a 20 euro vial to 45 to cover all three. We quote 18 to 26 for the same vial with the same COA." },
+  { q: "Can you get scammed buying peptides on Telegram?", a: "Yes, easily, if you pay a stranger with no COA and no history. The batch number matching the vial, dated vouches and a written reship policy are what prevent it." },
+  { q: "Do I need a prescription?", a: "No. Research chemical, not a licensed medicine. Personal quantities clear without one in every country we ship to." },
+  { q: "What payment methods do you take?", a: "SEPA, card, BTC and USDT, varying by country. iDEAL in the Netherlands, BLIK in Poland. No card details are stored on a server." },
+  { q: "What if customs seizes the parcel?", a: "Photograph the notice, send it, we reship once free. Written policy, honoured 14 times in four years." },
+  { q: "How fast is delivery?", a: "Two to five working days inside the EU. Switzerland, the UK, the UAE, the US and Canada run longer and are declared." },
+  { q: "Are the vials cold-packed?", a: "Yes, sealed insulated mailer with a cold pack, no branding outside. Lyophilised vials do not need dry ice, they need to not sit in a hot van." },
+  { q: "Can I see a COA before paying?", a: "Yes, for the exact batch being quoted. That is the point of the desk." },
+];
+---
+<Base
+  title="Peptides on Telegram — FAQ"
+  description="Twelve straight answers on buying peptides on Telegram: safety, payment, delivery, legality, COAs and what happens if customs takes the parcel."
+  path="/faq/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "FAQ", url: "/faq/" }]), faqPage(faqs)]}
+>
+  <p class="eyebrow">Twelve answers, no hedging</p>
+  <h1>FAQ</h1>
+  <p class="lede">
+    The questions that actually get asked in the chat, answered in public so you do not have to ask them.
+  </p>
+  <FAQ items={faqs} heading="Answers" />
+  <CTA
+    src="/faq/"
+    label="FAQ page"
+    heading="Still a question?"
+    body="Ask it in the chat. Straight answer, no sales script."
+  />
+</Base>

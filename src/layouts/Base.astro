@@ -1,0 +1,76 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import StickyCTA from "../components/StickyCTA.astro";
+import { ORG, WEBSITE } from "../lib/schema";
+import { SITE } from "../lib/tg";
+
+type Props = {
+  title: string;
+  description: string;
+  path: string;
+  schema?: unknown[];
+  image?: string;
+  imageAlt?: string;
+  stickySrc?: string;
+  noindex?: boolean;
+};
+
+const {
+  title,
+  description,
+  path,
+  schema = [],
+  image = "/img/desk.webp",
+  imageAlt = "The Peptide Desk cold-chain vial pack",
+  stickySrc = path,
+  noindex = false,
+} = Astro.props;
+
+const canonical = SITE + path;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    {!noindex && <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />}
+
+    <link rel="alternate" hreflang="en-GB" href={canonical} />
+    <link rel="alternate" hreflang="en-US" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Peptide Desk" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={SITE + image} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="The Peptide Desk" href={SITE + "/feed.xml"} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(ORG)} />
+    <script type="application/ld+json" set:html={JSON.stringify(WEBSITE)} />
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <Header />
+    <main class="wrap">
+      <slot />
+    </main>
+    <Footer />
+    <StickyCTA src={stickySrc} />
+  </body>
+</html>

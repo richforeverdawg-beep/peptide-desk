@@ -1,0 +1,68 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import { countries } from "../data/places";
+import { breadcrumbs } from "../lib/schema";
+---
+<Base
+  title="Shipping and Reship on Seizure Policy"
+  description="Cold-chain packing, 24-hour dispatch, 2-5 day EU delivery, and a written reship-on-seizure policy. Carrier and timing per country."
+  path="/shipping/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "Shipping", url: "/shipping/" }])]}
+>
+  <p class="eyebrow">Cold-chain · 24h dispatch · Written reship policy</p>
+  <h1>Shipping</h1>
+  <p class="lede">
+    Dispatch inside 24 hours of cleared payment, before the 15:00 cut-off. Sealed insulated mailer, cold pack, no
+    branding, no invoice on the outside. Tracking in the same chat, same day.
+  </p>
+
+  <h2>Timing by country</h2>
+  <table>
+    <thead><tr><th>Country</th><th>Carrier</th><th>Working days</th></tr></thead>
+    <tbody>
+      {countries.map((c) => (
+        <tr><td>{c.name}</td><td class="mono">{c.carriers}</td><td class="mono">{c.daysMin}-{c.daysMax}</td></tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Intra-EU vs declared</h2>
+  <p>
+    Intra-EU clears undeclared: no customs form, no duty, no VAT bill. Switzerland, the UK, the UAE, the US and
+    Canada are declared as research chemicals and carry local VAT on arrival — CHF 12 to 18 in Switzerland, HST
+    plus a handling fee on a share of Canadian parcels. That is the carrier's charge, not ours.
+  </p>
+
+  <h2>Reship on seizure</h2>
+  <p>
+    If customs takes the parcel, photograph the notice and send it in the chat. We reship once, free, to the same
+    address. No argument, no partial credit, no "prove it was the peptide". Claimed 14 times in four years,
+    honoured every time.
+  </p>
+  <p>
+    Two conditions only: the notice has to be photographed rather than described, and the address has to be the
+    one on the original order. A second seizure on the same address is reshipped at cost.
+  </p>
+
+  <h2>Packing</h2>
+  <p>
+    Lyophilised vials do not need dry ice. They need to not sit in a hot van, which is what the cold pack and the
+    insulated mailer are for. Vials are bubble-wrapped individually so they cannot rattle, then bagged, then
+    insulated. Nothing on the outside says what is inside.
+  </p>
+
+  <h2>Pickup points</h2>
+  <p>
+    Pickup point by default in France, Germany, the Netherlands, Poland and Sweden, because it clears faster and
+    needs no signature. Home delivery on request. In the UAE, a Business Bay or Deira office address clears far
+    more reliably than a villa.
+  </p>
+
+  <CTA
+    src="/shipping/"
+    label="Shipping page"
+    heading="Ask about your country"
+    body="Send the country and we will confirm carrier, days and the customs position in one message."
+  />
+</Base>

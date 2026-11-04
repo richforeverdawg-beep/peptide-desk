@@ -1,0 +1,9 @@
+---
+const { title, links } = Astro.props;
+---
+<section>
+  <h2>{title}</h2>
+  <div class="grid grid--3">
+    {links.map((l) => <a class="card" href={l.url}>{l.name}</a>)}
+  </div>
+</section>

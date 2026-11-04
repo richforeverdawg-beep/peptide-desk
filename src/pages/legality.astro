@@ -1,0 +1,64 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import { countries } from "../data/places";
+import { breadcrumbs } from "../lib/schema";
+---
+<Base
+  title="Is It Legal? Country-by-Country Peptide Status"
+  description="Research chemical status, regulator and customs position for 15 countries. No prescription, no import licence at personal quantity."
+  path="/legality/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "Legality", url: "/legality/" }])]}
+>
+  <p class="eyebrow">15 countries · Stated plainly</p>
+  <h1>Legality by country</h1>
+  <p class="lede">
+    Nothing here is sold as a licensed medicine. It is sold as a research chemical, which is why there is no
+    prescription and no pharmacy registration. Below is the actual position per country, regulator named.
+  </p>
+
+  <h2>Country table</h2>
+  <table>
+    <thead><tr><th>Country</th><th>Regulator</th><th>Status</th></tr></thead>
+    <tbody>
+      {countries.map((c) => (
+        <tr><td>{c.name}</td><td class="mono">{c.regulator}</td><td>{c.legal}</td></tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>What "research chemical" actually means</h2>
+  <p>
+    It means the vial is not a finished medicinal product with a marketing authorisation. It has not been through
+    a licensing file. The label says laboratory use, and dosing is your call rather than a doctor's. That is the
+    trade for the price: the same molecule without the licensing overhead.
+  </p>
+
+  <h2>What it does not mean</h2>
+  <p>
+    It does not mean unregulated or anything-goes. Every country above has a named regulator, and those
+    regulators have positions. In the EU the position at personal quantity is consistently permissive. Sweden
+    and Ireland are the strictest on paper and still pass personal vials. Switzerland and the UK are outside the
+    EU and require a customs declaration, which we make.
+  </p>
+
+  <h2>Prescription question</h2>
+  <p>
+    Semaglutide and tirzepatide are prescription medicines when dispensed as Ozempic, Mounjaro or Wegovy. The
+    vials here are not those products. They are the same molecule supplied as a research chemical, which is why
+    they cost a fraction and arrive without a pharmacy label.
+  </p>
+
+  <h2>The compliance line</h2>
+  <p>
+    Research chemicals, not a pharmacy, not medical advice. If a doctor is managing you, tell them what you are
+    taking.
+  </p>
+
+  <CTA
+    src="/legality/"
+    label="Legality page"
+    heading="Ask about your country"
+    body="One message, straight answer on the customs and regulator position where you live."
+  />
+</Base>

@@ -1,0 +1,161 @@
+---
+import Base from "../layouts/Base.astro";
+import PeptideCard from "../components/PeptideCard.astro";
+import CountryChip from "../components/CountryChip.astro";
+import CTA from "../components/CTA.astro";
+import FAQ from "../components/FAQ.astro";
+import PriceBandTable from "../components/PriceBandTable.astro";
+import { peptides } from "../data/peptides";
+import { countries } from "../data/places";
+import { tgPlain, orderLink } from "../lib/tg";
+import { faqPage, itemList } from "../lib/schema";
+
+const faqs = [
+  {
+    q: "Is buying peptides on Telegram safe?",
+    a: "Safer than a webshop with no history. You talk to a person, you see the batch COA before paying, and you see four years of chat history. The risk is picking an anonymous channel with no COA and no reship policy. Five checks on our verify page settle it in two minutes.",
+  },
+  {
+    q: "How do I buy peptides on Telegram?",
+    a: "Open the handle, send one message naming the peptide and the country. You get a price and a batch number in 90 seconds. Confirm, pay on the rail you prefer, receive tracking the same day. No account, no cart, no checkout form.",
+  },
+  {
+    q: "Which Telegram peptide dealer is legit?",
+    a: "The one that shows a lab name and a batch number that match the vial you receive. Ask for both before paying. A dealer who sends a COA with a different batch number, or a screenshot instead of a PDF, is not one.",
+  },
+  {
+    q: "Do you ship to France, Germany and the rest of the EU?",
+    a: "Yes, all fifteen countries on the list. Intra-EU goes undeclared, so no customs and no duty. Switzerland, the UK, the UAE, the US and Canada are declared as research chemicals and carry local VAT on arrival.",
+  },
+  {
+    q: "Why is Telegram cheaper than a peptide website?",
+    a: "No card processing on most orders, no cart abandonment software, no affiliate layer, no warehouse staff. A webshop marks a 20 euro vial to 45 to cover all four. We quote 18 to 26 for the same vial with the same lab COA.",
+  },
+  {
+    q: "Can you get scammed buying peptides on Telegram?",
+    a: "Yes, easily, if you pay a stranger with no COA and no history. Three things prevent it: the batch number matches, the handle has dated vouch screenshots, and there is a written reship-on-seizure policy. Ours is on the shipping page.",
+  },
+];
+
+const schema = [
+  faqPage(faqs),
+  itemList("Peptide catalogue", peptides.map((p) => `/peptides/${p.slug}/`)),
+];
+---
+
+<Base
+  title="Buy Peptides on Telegram — Verified Dealer, COA on Every Batch"
+  description="Verified Telegram peptide dealer. Batch COAs, cold-chain packing, 24-hour EU dispatch. Message the desk, get a price in 90 seconds. No cart."
+  path="/"
+  schema={schema}
+  stickySrc="/"
+  imageAlt="Lyophilised peptide vials in cold-chain packing on a black desk"
+>
+  <section>
+    <p class="eyebrow">Verified dealer · EU cold-chain · Since 2022</p>
+    <h1>Buy Peptides on Telegram. No Cart. No Waiting.</h1>
+    <p class="lede">
+      Direct from a verified dealer's Telegram. Third-party COAs on every batch. Cold-chain packing, 24-hour
+      dispatch across the EU. Send one message, get a price in 90 seconds.
+    </p>
+    <p><a class="btn" href={orderLink("/", "Homepage CTA")} rel="nofollow noopener" target="_blank">Open Telegram → @donjuanjodyy</a></p>
+    <div class="trust-bar">
+      <span>Batch COAs on file</span>
+      <span>4 years of Telegram history</span>
+      <span>2,100+ vouch screenshots</span>
+      <span>Reship on seizure</span>
+      <span>No card details stored</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why people buy peptides on Telegram instead of a webshop</h2>
+    <div class="grid grid--3">
+      <div class="card">
+        <h3>Faster</h3>
+        <p>One message replaces a cart, an account, a checkout form and a confirmation email. Price in 90 seconds, tracking the same day.</p>
+      </div>
+      <div class="card">
+        <h3>Cheaper</h3>
+        <p>No card processing, no affiliate layer, no warehouse overhead. A 20 euro vial stays 20 euro instead of becoming 45.</p>
+      </div>
+      <div class="card">
+        <h3>You can see the dealer</h3>
+        <p>Four years of history, dated vouch screenshots, a live channel. A webshop is a logo. This is a paper trail you can read before paying.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pick your peptide</h2>
+    <div class="grid grid--4">
+      {peptides.map((p) => <PeptideCard peptide={p} />)}
+    </div>
+  </section>
+
+  <section>
+    <h2>Where we ship</h2>
+    <p class="lede">
+      Fifteen countries. Intra-EU clears undeclared, so no customs and no duty. Switzerland, the UK, the UAE,
+      the US and Canada are declared as research chemicals and carry local VAT on arrival.
+    </p>
+    <div class="grid grid--4" style="gap:10px">
+      {countries.map((c) => (
+        <CountryChip place={c} href={c.hub ? `/locations/${c.slug}/` : `/buy/bpc-157-on-telegram-in-${c.slug}/`} />
+      ))}
+    </div>
+  </section>
+
+  <CTA
+    src="/"
+    label="Homepage mid"
+    heading="Send one message. Get a price in 90 seconds."
+    body="Name the peptide and the country. You get a price, a batch number and the COA for that batch. No account needed."
+  />
+
+  <section>
+    <h2>The order in six steps</h2>
+    <ol class="steps">
+      <li><strong>Message the handle.</strong> Name the peptide, the quantity and the country.</li>
+      <li><strong>Get the price and the batch.</strong> A real number and a real batch ID, in 90 seconds.</li>
+      <li><strong>Check the COA.</strong> Third-party PDF, lab name, batch number matching what you were quoted.</li>
+      <li><strong>Pay on your rail.</strong> SEPA, card, BTC or USDT depending on the country.</li>
+      <li><strong>Get tracking.</strong> Same day, before the cut-off. Cold-packed, insulated, no branding.</li>
+      <li><strong>Receive and re-check.</strong> Batch number on the vial matches the COA. If it does not, say so in the chat.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Verify us before you pay a cent</h2>
+    <ol>
+      <li>Open the handle and read back four years of history. Not a two-week-old channel.</li>
+      <li>Ask for the COA for the exact batch you were quoted. Lab name and batch ID must both be on it.</li>
+      <li>Check the vouch screenshots are dated and consecutive, not one screenshot cropped nine ways.</li>
+      <li>Read the reship-on-seizure policy on the <a href="/shipping/">shipping page</a> before ordering.</li>
+      <li>Compare the quote against the band below. Wildly under-band is a different lab, not a bargain.</li>
+    </ol>
+    <p><a class="btn btn--ghost" href="/verify/">Full verification checklist →</a></p>
+  </section>
+
+  <section>
+    <h2>Price band</h2>
+    <p class="lede">EUR, per vial, before shipping. This is the range we actually quote, not a teaser price.</p>
+    <PriceBandTable place={countries[0]} />
+    <p class="mono">Prices move with batch. Ask for the current number in the chat.</p>
+  </section>
+
+  <FAQ items={faqs} heading="Buying peptides on Telegram — the honest answers" />
+
+  <CTA
+    src="/"
+    label="Homepage footer"
+    heading="The desk is open."
+    body="Message @donjuanjodyy. Price, batch number and COA inside 90 seconds, in any of the fifteen countries."
+    cta="MESSAGE THE DEALER ON TELEGRAM →"
+  />
+
+  <p class="mono">
+    All products supplied as research chemicals. Not a pharmacy. Not medical advice.
+    <a href={tgPlain()} rel="nofollow noopener" target="_blank">@donjuanjodyy</a>
+  </p>
+</Base>

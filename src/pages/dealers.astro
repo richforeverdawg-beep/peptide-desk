@@ -1,0 +1,69 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import { breadcrumbs } from "../lib/schema";
+---
+<Base
+  title="Telegram Peptide Dealers — Who to Use and Who to Skip"
+  description="An honest read on the Telegram peptide dealer market: the four types of seller, what each is good for, and where the scams sit."
+  path="/dealers/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "Dealers", url: "/dealers/" }])]}
+>
+  <p class="eyebrow">Market read · No affiliate links</p>
+  <h1>Telegram peptide dealers</h1>
+  <p class="lede">
+    There are four kinds of seller on Telegram and only one of them is worth your money. This page is the
+    market read — including where we sit in it, since pretending we are the only option is useless.
+  </p>
+
+  <h2>1. The named desk</h2>
+  <p>
+    A single handle, a channel, years of history, batch COAs, a written reship policy. Slow to reply at peak,
+    priced in a band rather than a discount. This is us. It is also the only category where the paperwork exists
+    before you pay.
+  </p>
+
+  <h2>2. The group-buy channel</h2>
+  <p>
+    A channel with 10,000 members and a weekly drop. Cheapest per vial, worst per experience: no COA per batch,
+    no reship, and a queue. Fine if you already know the molecule and can absorb a loss.
+  </p>
+
+  <h2>3. The reseller</h2>
+  <p>
+    Buys from a desk and marks it up 30 percent. Convenient if they are in your city and hold stock. Ask which
+    desk they buy from — most cannot tell you, which tells you something.
+  </p>
+
+  <h2>4. The impostor</h2>
+  <p>
+    Copies a known display name, changes one character in the handle, DMs you first. Takes payment, sends
+    nothing, or sends a vial with a batch number that matches no COA. Every scam story you have read is this
+    category.
+  </p>
+
+  <h2>Where the scams actually sit</h2>
+  <ul>
+    <li>Unsolicited DMs. If they message you first, assume impostor until the handle checks out.</li>
+    <li>Prices 40 percent under every band. A different lab, or no lab.</li>
+    <li>Payment details from a handle other than the one you were talking to.</li>
+    <li>No channel, DM only.</li>
+    <li>"COA on arrival." It should exist before payment.</li>
+  </ul>
+
+  <h2>How to compare two dealers fairly</h2>
+  <p>
+    Ask both for the same thing: the COA for the batch, the price for the same quantity, the reship policy, and
+    the carrier. Whoever answers all four in one message without a follow-up is the one. Whoever sends a
+    screenshot of a price list and nothing else is not.
+  </p>
+
+  <p>Run the five checks on us on the <a href="/verify/">verify page</a> before you decide.</p>
+
+  <CTA
+    src="/dealers/"
+    label="Dealers page"
+    heading="Compare us properly"
+    body="Ask for a batch COA, a live price, the reship policy and the carrier. We answer all four in one message."
+  />
+</Base>

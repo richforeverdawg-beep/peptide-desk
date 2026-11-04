@@ -1,0 +1,9 @@
+---
+import { orderLink } from "../lib/tg";
+const { src, label, heading, body, cta = "OPEN TELEGRAM →" } = Astro.props;
+---
+<div class="cta-block">
+  <h3>{heading}</h3>
+  <p>{body}</p>
+  <a class="btn" href={orderLink(src, label)} rel="nofollow noopener" target="_blank">{cta}</a>
+</div>

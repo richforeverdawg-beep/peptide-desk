@@ -1,0 +1,16 @@
+---
+import { band } from "../lib/pricing";
+const { peptide, place } = Astro.props;
+const b = place ? band(peptide.priceLow, peptide.priceHigh, place) : null;
+---
+<a class="card" href={`/peptides/${peptide.slug}/`}>
+  <span class="mono">{peptide.vial}</span>
+  <h3>{peptide.name}</h3>
+  <p class="hook">{peptide.hook}</p>
+  {b && <p class="mono price">{b.compact}</p>}
+</a>
+
+<style>
+  .hook { font-size: 0.9rem; color: var(--dim); margin: 6px 0 10px; }
+  .price { color: var(--ink); font-weight: 700; margin: 0; }
+</style>

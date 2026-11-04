@@ -1,0 +1,156 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CTA from "../../components/CTA.astro";
+import FAQ from "../../components/FAQ.astro";
+import PriceBandTable from "../../components/PriceBandTable.astro";
+import SiblingLinks from "../../components/SiblingLinks.astro";
+import { hubs, cityNames, cityParent } from "../../data/places";
+import { peptides } from "../../data/peptides";
+import { band, deliveryWindow } from "../../lib/pricing";
+import { orderLink } from "../../lib/tg";
+import { clampTitle, clampMeta } from "../../lib/text";
+import { breadcrumbs, faqPage } from "../../lib/schema";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return hubs.map((c) => ({ params: { slug: c.slug }, props: { place: c } }));
+}
+
+const { place } = Astro.props;
+const path = `/locations/${place.slug}/`;
+const cities = Object.keys(cityParent).filter((c) => cityParent[c] === place.slug);
+const ref = band(18, 26, place);
+
+const title = clampTitle(
+  `Peptides on Telegram in ${place.name} — Verified Dealer, ${place.daysMin}-${place.daysMax} Days`,
+  `Peptides on Telegram in ${place.name} — Verified Dealer`
+);
+const description = clampMeta(
+  `Verified peptide dealer shipping to ${place.name} in ${deliveryWindow(place)}. Batch COAs, ${place.rails}, ${place.customs.split(".")[0]}. Message the desk in 90 seconds.`
+);
+
+const faqs = [
+  {
+    q: `Do you ship peptides to ${place.name}?`,
+    a: `Yes, all twelve peptides, ${deliveryWindow(place)} via ${place.carriers}. ${place.customs}`,
+  },
+  {
+    q: `Is buying peptides on Telegram legal in ${place.name}?`,
+    a: `${place.legal} Regulator is ${place.regulator}. No prescription, no import licence at personal quantity.`,
+  },
+  {
+    q: `How do I pay in ${place.name}?`,
+    a: `${place.rails}. Payment instructions arrive in the chat from @donjuanjodyy only. No card details are stored server-side.`,
+  },
+  {
+    q: `What is the price band in ${place.name}?`,
+    a: `BPC-157 runs ${ref.compact} per vial; the full table is on this page. Webshops in ${place.name} list the same vials far higher. Prices move with batch, so ask for the live number.`,
+  },
+  {
+    q: `What if customs takes the parcel in ${place.name}?`,
+    a: `Photograph the notice, send it, and we reship once free. Written policy on the shipping page, honoured 14 times in four years.`,
+  },
+];
+
+const schema = [
+  breadcrumbs([
+    { name: "Home", url: "/" },
+    { name: "Locations", url: "/locations/" },
+    { name: place.name, url: path },
+  ]),
+  faqPage(faqs),
+];
+---
+
+<Base
+  title={title}
+  description={description}
+  path={path}
+  schema={schema}
+  stickySrc={path}
+  imageAlt={`Peptide vials cold-packed for delivery across ${place.name}`}
+>
+  <Breadcrumbs items={[{ name: "Home", url: "/" }, { name: "Locations", url: "/locations/" }, { name: place.name, url: path }]} />
+
+  <section>
+    <p class="eyebrow">{deliveryWindow(place)} · {place.carriers} · {place.rails}</p>
+    <h1>Peptides on Telegram in {place.name}</h1>
+    <p class="lede">
+      Twelve peptides, cold-packed, shipped to {place.name} in {deliveryWindow(place)} via {place.carriers}.
+      Batch COA on every order, reship on seizure, no cart anywhere. {place.customs} You order by message and
+      get a price in 90 seconds.
+    </p>
+    <p><a class="btn" href={orderLink(path, `Location hub ${place.name}`)} rel="nofollow noopener" target="_blank">Message the desk for {place.name} →</a></p>
+  </section>
+
+  <section>
+    <h2>Delivery inside {place.name}</h2>
+    <p>
+      {deliveryWindow(place)} via {place.carriers}. {place.localNote} Dispatch inside 24 hours of cleared payment,
+      before the 15:00 cut-off, cold-packed in a sealed insulated mailer with no branding.
+    </p>
+    <p>{place.customs}</p>
+  </section>
+
+  <section>
+    <h2>Legality in {place.name}</h2>
+    <p>{place.legal}</p>
+    <p>Regulator: {place.regulator}. Full detail on the <a href="/legality/">legality page</a>.</p>
+  </section>
+
+  <section>
+    <h2>Price band in {place.name}</h2>
+    <PriceBandTable place={place} />
+    <p class="mono">Quoted in {place.currencyCode}. Prices move with batch.</p>
+  </section>
+
+  <CTA
+    src={path}
+    label={`${place.name} hub mid`}
+    heading={`${place.name} — price in 90 seconds`}
+    body="Name the peptide and the quantity. Live number, batch ID and matching COA before you pay."
+  />
+
+  <section>
+    <h2>All twelve peptides to {place.name}</h2>
+    <div class="grid grid--3">
+      {peptides.map((p) => (
+        <a class="card" href={`/buy/${p.slug}-on-telegram-in-${place.slug}/`}>
+          <span class="mono">{p.vial}</span>
+          <h3>{p.name} in {place.name}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {cities.length > 0 && (
+    <section>
+      <h2>Cities</h2>
+      <div class="grid grid--3">
+        {cities.map((c) => (
+          <a class="card" href={`/buy/bpc-157-on-telegram-in-${c}/`}>{cityNames[c]}</a>
+        ))}
+      </div>
+      <p class="mono">BPC-157, tirzepatide and retatrutide get city-level pages.</p>
+    </section>
+  )}
+
+  <FAQ items={faqs} heading={`${place.name} — questions`} />
+
+  <SiblingLinks
+    title="Other countries"
+    links={hubs.filter((h) => h.slug !== place.slug).map((h) => ({ name: h.name, url: `/locations/${h.slug}/` }))}
+  />
+
+  <CTA
+    src={path}
+    label={`${place.name} hub footer`}
+    heading={`Order to ${place.name} on Telegram`}
+    body={`${deliveryWindow(place)}, batch COA in the envelope, reship on seizure.`}
+    cta="OPEN TELEGRAM →"
+  />
+
+  <p class="mono">Research chemical. Not a pharmacy. Not medical advice.</p>
+</Base>

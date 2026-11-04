@@ -1,0 +1,43 @@
+---
+import { pillars } from "../data/peptides";
+import { hubs } from "../data/places";
+import { tgPlain, CHANNEL, HANDLE } from "../lib/tg";
+---
+<footer>
+  <div class="wrap">
+    <div class="grid grid--4">
+      <div>
+        <h4>Peptides</h4>
+        <ul>{pillars.map((p) => <li><a href={`/peptides/${p.slug}/`}>{p.name}</a></li>)}</ul>
+      </div>
+      <div>
+        <h4>Ship to</h4>
+        <ul>{hubs.map((c) => <li><a href={`/locations/${c.slug}/`}>{c.name}</a></li>)}</ul>
+      </div>
+      <div>
+        <h4>Trust</h4>
+        <ul>
+          <li><a href="/verify/">Verify us</a></li>
+          <li><a href="/coa/">Batch COAs</a></li>
+          <li><a href="/shipping/">Shipping</a></li>
+          <li><a href="/legality/">Legality</a></li>
+          <li><a href="/dealers/">Dealer list</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Desk</h4>
+        <ul>
+          <li><a href={tgPlain()} rel="nofollow noopener" target="_blank">@{HANDLE}</a></li>
+          <li><a href={`https://t.me/${CHANNEL}`} rel="nofollow noopener" target="_blank">Price channel</a></li>
+          <li><a href="/guides/telegram-vs-peptide-webshop/">Telegram vs webshop</a></li>
+          <li><a href="/guides/telegram-vs-alibaba-peptides/">Telegram vs Alibaba</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="rule" />
+    <p class="mono">The Peptide Desk · Telegram-only · No cart, no checkout, no card details stored.</p>
+    <p class="mono">All products are supplied as research chemicals, not as licensed medicines. Not a pharmacy. Not medical advice. Last price verification shown on each page.</p>
+    <p class="mono">© {new Date().getFullYear()} The Peptide Desk</p>
+  </div>
+</footer>

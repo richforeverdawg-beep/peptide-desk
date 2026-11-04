@@ -1,0 +1,17 @@
+---
+import { orderLink } from "../lib/tg";
+const { src, label = "MESSAGE THE DEALER ON TELEGRAM" } = Astro.props;
+---
+<a class="sticky" href={orderLink(src, label)} rel="nofollow noopener" target="_blank">
+  {label} →
+</a>
+
+<style>
+  .sticky {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: #0a0a0a; color: #fff; text-align: center;
+    padding: 17px 16px; font-family: var(--mono); font-size: 0.8rem;
+    letter-spacing: 0.08em; font-weight: 700; border: 0; z-index: 60;
+  }
+  @media (min-width: 760px) { .sticky { display: none; } }
+</style>

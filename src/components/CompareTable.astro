@@ -1,0 +1,15 @@
+---
+import { bySlug } from "../data/peptides";
+import { band } from "../lib/pricing";
+const { main, place } = Astro.props;
+const sibs = main.siblings.map(bySlug);
+---
+<table>
+  <thead><tr><th>Peptide</th><th>Vial</th><th>Band</th><th>Why people pick it</th></tr></thead>
+  <tbody>
+    <tr><td><strong>{main.name}</strong></td><td class="mono">{main.vial}</td><td class="mono">{band(main.priceLow, main.priceHigh, place).compact}</td><td>{main.hook}</td></tr>
+    {sibs.map((s) => (
+      <tr><td><a href={`/peptides/${s.slug}/`}>{s.name}</a></td><td class="mono">{s.vial}</td><td class="mono">{band(s.priceLow, s.priceHigh, place).compact}</td><td>{s.hook}</td></tr>
+    ))}
+  </tbody>
+</table>

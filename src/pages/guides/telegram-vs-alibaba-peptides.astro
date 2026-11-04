@@ -1,0 +1,61 @@
+---
+import Base from "../../layouts/Base.astro";
+import CTA from "../../components/CTA.astro";
+import { breadcrumbs } from "../../lib/schema";
+---
+<Base
+  title="Telegram vs Alibaba for Peptides — Which to Use"
+  description="Alibaba is cheaper per gram and worse per order. A real comparison on minimums, shipping time, COA quality and what happens when it goes wrong."
+  path="/guides/telegram-vs-alibaba-peptides/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "Guides", url: "/guides/telegram-vs-alibaba-peptides/" }])]}
+>
+  <p class="eyebrow">Guide · Sourcing</p>
+  <h1>Telegram vs Alibaba for peptides</h1>
+  <p class="lede">
+    Alibaba is cheaper per gram and worse per order. Both statements are true at once, and which one matters
+    depends on whether you are buying one vial or fifty.
+  </p>
+
+  <h2>Where Alibaba wins</h2>
+  <ul>
+    <li>Unit price at volume. Fifty vials direct from a Chinese factory is a fraction of any EU price.</li>
+    <li>Custom synthesis, if you want something nobody stocks.</li>
+    <li>Bulk raw powder, if you are comfortable weighing and capping.</li>
+  </ul>
+
+  <h2>Where Alibaba loses</h2>
+  <ul>
+    <li>Minimum order. One vial is not a viable Alibaba order once shipping is on it.</li>
+    <li>Time. Two to five weeks, and customs is a real risk on a commercial-value parcel.</li>
+    <li>COA quality. Many listings attach a generic COA that belongs to no specific batch, or a different product.</li>
+    <li>Recourse. A dispute on a 40 dollar order is not worth the hours.</li>
+    <li>No reship. A seized Alibaba parcel is your loss, in practice.</li>
+  </ul>
+
+  <h2>The COA problem specifically</h2>
+  <p>
+    A factory COA is an in-house document. An independent COA is a different thing. Most Alibaba listings offer
+    the first and describe it as the second. If you go that route, budget for testing one vial from the batch
+    yourself before committing to volume — the test costs more than the vial and less than a bad batch.
+  </p>
+
+  <h2>The break-even</h2>
+  <p>
+    Roughly ten vials. Under ten, the shipping, the wait and the customs exposure eat the saving. Over ten, and
+    if you already know the molecule and the lab, Alibaba is genuinely cheaper. Between one and ten, a Telegram
+    desk at 18 to 26 with a batch COA and a reship policy is the better trade.
+  </p>
+
+  <h2>What people actually do</h2>
+  <p>
+    Buy one vial from a desk to confirm the product is what you expect, then go to Alibaba for volume if the
+    molecule suits you. Or stay on the desk for the convenience and pay the small premium. Both are rational.
+  </p>
+
+  <CTA
+    src="/guides/telegram-vs-alibaba-peptides/"
+    label="Guide alibaba"
+    heading="Start with one vial"
+    body="Confirm the product before you commit to volume. Price and batch COA in 90 seconds."
+  />
+</Base>

@@ -1,0 +1,68 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import { breadcrumbs } from "../lib/schema";
+---
+<Base
+  title="Verify the Dealer Before You Pay — 5 Checks"
+  description="Five checks that separate a real Telegram peptide dealer from a channel with a logo. Batch COA, history depth, vouch dates, reship policy, impostor handles."
+  path="/verify/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "Verify", url: "/verify/" }])]}
+>
+  <p class="eyebrow">Do this in two minutes</p>
+  <h1>Verify us before you pay a cent</h1>
+  <p class="lede">
+    Telegram has no buyer protection. That is the whole risk, and it is a solvable one. Five checks separate a
+    dealer from a channel with a logo. Run them on us, then run them on anyone else you are considering.
+  </p>
+
+  <h2>1. Ask for the COA for the exact batch</h2>
+  <p>
+    Not a COA. The COA for the batch you were quoted. It must carry a lab name and a batch ID, and the batch ID
+    must match the vial you receive. A screenshot of a PDF, a COA with a different batch number, or a "COA
+    coming" is a fail. Every batch on this desk has a PDF with the lab's own reference number.
+  </p>
+
+  <h2>2. Read the history back months</h2>
+  <p>
+    A handle under three months old has no track record. Scroll the chat. You want to see the same person
+    answering the same questions over time, and you want to see price changes that match batch arrivals rather
+    than prices that never move.
+  </p>
+
+  <h2>3. Check the vouch screenshots are dated and consecutive</h2>
+  <p>
+    One screenshot cropped nine ways is not evidence. Dated screenshots across months, with different customers,
+    are. Ours sit in a pinned album, dated, with the order and the arrival both shown.
+  </p>
+
+  <h2>4. Read the reship policy before paying</h2>
+  <p>
+    Seizures happen. A dealer with no written policy improvises after the fact. Ours is on the
+    <a href="/shipping/">shipping page</a>: photograph the notice, we reship once free. Claimed 14 times in four
+    years, honoured every time.
+  </p>
+
+  <h2>5. Confirm the handle on every page</h2>
+  <p>
+    Impostors copy the display name and change one character in the handle. The handle on this site is
+    <strong>@donjuanjodyy</strong> everywhere, and it is the only handle we take payment through. If someone
+    messages you first claiming to be us, check the handle letter by letter.
+  </p>
+
+  <h2>What a fail looks like</h2>
+  <ul>
+    <li>Asks for payment before naming a batch.</li>
+    <li>Quotes 40 percent under every other band on the market.</li>
+    <li>Sends payment details from a second handle.</li>
+    <li>Cannot say which lab made the vial.</li>
+    <li>Has no channel, only a DM.</li>
+  </ul>
+
+  <CTA
+    src="/verify/"
+    label="Verify page"
+    heading="Checked us out? The desk is open."
+    body="Message @donjuanjodyy with the peptide and your country. Price, batch ID and COA inside 90 seconds."
+  />
+</Base>

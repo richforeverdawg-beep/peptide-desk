@@ -1,0 +1,240 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CTA from "../../components/CTA.astro";
+import FAQ from "../../components/FAQ.astro";
+import CompareTable from "../../components/CompareTable.astro";
+import PriceBandTable from "../../components/PriceBandTable.astro";
+import SiblingLinks from "../../components/SiblingLinks.astro";
+import { peptides, bySlug, cityPeptides } from "../../data/peptides";
+import { countries, allCities, cityAsPlace, countryBySlug } from "../../data/places";
+import { band, deliveryWindow, deliveryShort } from "../../lib/pricing";
+import { orderLink } from "../../lib/tg";
+import { clampTitle, clampMeta } from "../../lib/text";
+import { breadcrumbs, faqPage, offer } from "../../lib/schema";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const out = [];
+  for (const c of countries) {
+    for (const p of peptides) {
+      out.push({
+        params: { slug: `${p.slug}-on-telegram-in-${c.slug}` },
+        props: { peptide: p, place: c },
+      });
+    }
+  }
+  for (const city of allCities) {
+    const place = cityAsPlace(city);
+    for (const p of cityPeptides) {
+      out.push({
+        params: { slug: `${p.slug}-on-telegram-in-${city}` },
+        props: { peptide: p, place },
+      });
+    }
+  }
+  return out;
+}
+
+const { peptide, place } = Astro.props;
+const path = `/buy/${peptide.slug}-on-telegram-in-${place.slug}/`;
+const b = band(peptide.priceLow, peptide.priceHigh, place);
+const sibs = peptide.siblings.map(bySlug);
+const parent = countryBySlug(place.countrySlug);
+const isCity = place.type === "city";
+
+const title = clampTitle(
+  `Buy ${peptide.name} on Telegram in ${place.name} — ${isCity ? "Same-Week" : place.daysMin + "-Day"} Delivery`,
+  `Buy ${peptide.name} on Telegram in ${place.name}`
+);
+const description = clampMeta(
+  `${peptide.name} for sale on Telegram, shipped to ${place.name} in ${deliveryShort(place)}. Batch COAs, ${place.rails}, ${isCity ? "pickup points" : "customs handled"}. Message the desk in 90 seconds.`
+);
+
+const faqs = [
+  {
+    q: `How much does ${peptide.name} cost in ${place.name}?`,
+    a: `Current band is ${b.compact} per ${peptide.vial}, before shipping. Webshops in ${place.name} list the same vial 60 to 100 percent higher because they carry card fees and a warehouse. Prices move with batch, so ask for the live number.`,
+  },
+  {
+    q: `How long does delivery to ${place.name} take?`,
+    a: `${deliveryWindow(place)} via ${place.carriers}. ${place.customs} ${isCity ? place.localNote : ""} Tracking goes out the same day, before the 15:00 cut-off.`,
+  },
+  {
+    q: `Is ${peptide.name} legal in ${place.name}?`,
+    a: `${place.legal} The regulator is ${place.regulator}. Personal quantities do not require a prescription and no import licence is involved.`,
+  },
+  {
+    q: `How do I pay for ${peptide.name} in ${place.name}?`,
+    a: `${place.rails}. No card details are stored on a server; card rails run through the processor and everything else is direct. Payment instructions come in the chat, never from a second handle.`,
+  },
+  {
+    q: `What happens if the parcel is seized in ${place.name}?`,
+    a: `We reship once, free, on a photographed customs notice. That is written policy, not a favour. It has been claimed 14 times in four years and honoured every time.`,
+  },
+];
+
+const schema = [
+  breadcrumbs([
+    { name: "Home", url: "/" },
+    { name: "Buy", url: "/buy/" },
+    { name: peptide.name, url: `/peptides/${peptide.slug}/` },
+    { name: place.name, url: path },
+  ]),
+  faqPage(faqs),
+  offer({
+    name: `${peptide.name} ${peptide.vial}`,
+    url: path,
+    low: String(Math.round(peptide.priceLow * place.priceFactor)),
+    high: String(Math.round(peptide.priceHigh * place.priceFactor)),
+    currency: place.currencyCode,
+    place: place.name,
+    days: deliveryShort(place),
+  }),
+];
+
+const label = `${peptide.name} to ${place.name}`;
+---
+
+<Base
+  title={title}
+  description={description}
+  path={path}
+  schema={schema}
+  stickySrc={path}
+  imageAlt={`${peptide.name} vial packed for cold-chain delivery to ${place.name}`}
+>
+  <Breadcrumbs
+    items={[
+      { name: "Home", url: "/" },
+      { name: peptide.name, url: `/peptides/${peptide.slug}/` },
+      { name: place.name, url: path },
+    ]}
+  />
+
+  <section>
+    <p class="eyebrow">{peptide.vial} · {b.compact} · {deliveryShort(place)} to {place.name}</p>
+    <h1>Buy {peptide.name} on Telegram in {place.name}</h1>
+    <p class="lede">
+      {peptide.name} ships to {place.name} in {deliveryWindow(place)} via {place.carriers}, cold-packed, with the
+      batch COA in the same envelope. Band is {b.compact} per vial. You order by message, not by cart — and the
+      tradeoff is real: no order page to stare at, so you have to actually check the batch number we send you.
+      Do that and this is faster and cheaper than any webshop in {place.name}.
+    </p>
+    <p><a class="btn" href={orderLink(path, label)} rel="nofollow noopener" target="_blank">Message the desk about {peptide.name} →</a></p>
+  </section>
+
+  <section>
+    <h2>{peptide.name} price in {place.name}</h2>
+    <p>
+      {b.low} to {b.high} per {peptide.vial}, quoted in {place.currencyCode}. Webshops targeting {place.name}
+      list the same vial at roughly {Math.round(place.priceFactor * peptide.priceHigh * 1.7)} and up, because
+      they carry card processing, affiliate payouts and warehouse staff. We do not. The band is what you actually
+      pay, and it is what you get quoted in the chat.
+    </p>
+    <p>
+      The band is wide on purpose: {peptide.name} from two labs is two different products with two different COAs.
+      The low end is one lab's standard batch, the high end is the other's. Both are in stock most weeks.
+      Under-band means a third lab with no COA — ask which.
+    </p>
+    <PriceBandTable place={place} />
+  </section>
+
+  <section>
+    <h2>Delivery to {place.name}</h2>
+    <p>
+      {deliveryWindow(place)} via {place.carriers}. {place.customs} Dispatch is inside 24 hours of cleared
+      payment, before the 15:00 cut-off, and tracking goes to the same chat.
+    </p>
+    <p>
+      {isCity ? place.localNote + " " : ""}Packing is a sealed insulated mailer with a cold pack, no branding, no
+      invoice outside the box. {peptide.name} is lyophilised, so it does not need dry ice — it needs to not sit in
+      a hot van, which is what the cold pack is for. Delivery is to a pickup point by default in {place.name}
+      because it clears faster and does not need a signature.
+    </p>
+    <p>Full carrier list, cut-off times and the seizure policy are on the <a href="/shipping/">shipping page</a>.</p>
+  </section>
+
+  <section>
+    <h2>Legality in {place.name}</h2>
+    <p>{place.legal}</p>
+    <p>
+      The regulator is {place.regulator}. Nothing here is dispensed against a prescription and nothing is
+      reimbursed. What that means in practice: you are buying a research chemical, so the label says laboratory
+      use, and the dosing is your call rather than a doctor's. Full country-by-country breakdown on the
+      <a href="/legality/">legality page</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2>How to verify the dealer before you pay</h2>
+    <ol>
+      <li>Ask for the COA for the exact batch you were quoted. Lab name and batch ID both on the PDF.</li>
+      <li>Read the chat history back months, not days. A handle under three months old is a risk.</li>
+      <li>Check the quote against the band above. Half-price means a different lab.</li>
+      <li>Confirm the handle matches on every page. Impostors copy the name and change one character.</li>
+      <li>Read the reship policy before paying, not after a seizure notice.</li>
+    </ol>
+    <p><a class="btn btn--ghost" href="/verify/">The full five-check list →</a></p>
+  </section>
+
+  <section>
+    <h2>{peptide.name} vs its two closest siblings</h2>
+    <p>
+      {peptide.name} is not the only option in its class and pretending otherwise wastes your time. Here is how it
+      actually sits against the two people compare it with most.
+    </p>
+    <CompareTable main={peptide} place={place} />
+  </section>
+
+  <CTA
+    src={path}
+    label={`${label} mid`}
+    heading={`${peptide.name} to ${place.name}. Price in 90 seconds.`}
+    body={`Name the quantity. You get a live ${place.currencyCode} number, the batch ID and the matching COA before you pay anything.`}
+  />
+
+  <section>
+    <h2>How to order</h2>
+    <ol class="steps">
+      <li>Message @donjuanjodyy. Say "{peptide.name}, {place.name}".</li>
+      <li>Receive the live price, the batch ID and the COA for that batch.</li>
+      <li>Pay on your rail: {place.rails}.</li>
+      <li>Get tracking in the same chat, same day.</li>
+      <li>On arrival, match the batch on the vial to the COA. Mismatch, message us.</li>
+    </ol>
+  </section>
+
+  <FAQ items={faqs} heading={`${peptide.name} in ${place.name} — questions`} />
+
+  <SiblingLinks
+    title={`Other peptides shipped to ${place.name}`}
+    links={peptides
+      .filter((p) => p.slug !== peptide.slug)
+      .slice(0, 6)
+      .map((p) => ({ name: `${p.name} in ${place.name}`, url: `/buy/${p.slug}-on-telegram-in-${place.slug}/` }))}
+  />
+
+  <SiblingLinks
+    title={`${peptide.name} in other countries`}
+    links={countries
+      .filter((c) => c.slug !== place.slug)
+      .slice(0, 5)
+      .map((c) => ({ name: `${peptide.name} in ${c.name}`, url: `/buy/${peptide.slug}-on-telegram-in-${c.slug}/` }))}
+  />
+
+  {isCity && (
+    <p class="mono">Parent country hub: <a href={`/locations/${parent.slug}/`}>{parent.name}</a> · Peptide pillar: <a href={`/peptides/${peptide.slug}/`}>{peptide.name}</a></p>
+  )}
+
+  <CTA
+    src={path}
+    label={`${label} footer`}
+    heading={`Order ${peptide.name} to ${place.name} on Telegram`}
+    body={`${b.compact} per ${peptide.vial}. ${deliveryWindow(place)}. Batch COA in the envelope. Reship on seizure.`}
+    cta="OPEN TELEGRAM →"
+  />
+
+  <p class="mono">Research chemical. Not a pharmacy. Not medical advice.</p>
+</Base>

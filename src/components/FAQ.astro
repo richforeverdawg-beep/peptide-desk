@@ -1,0 +1,18 @@
+---
+const { items, heading = "Questions" } = Astro.props;
+---
+<section>
+  <h2>{heading}</h2>
+  {items.map((x) => (
+    <div class="qa">
+      <h3>{x.q}</h3>
+      <p>{x.a}</p>
+    </div>
+  ))}
+</section>
+
+<style>
+  .qa { border-top: 2px solid var(--line); padding-top: 16px; margin-bottom: 18px; }
+  .qa h3 { font-size: 1rem; }
+  .qa p { margin: 0; color: #333; font-size: 0.95rem; }
+</style>

@@ -1,0 +1,16 @@
+---
+import { peptides } from "../data/peptides";
+import { band } from "../lib/pricing";
+const { place, rows } = Astro.props;
+const list = rows || peptides.filter((p) => p.priceLow <= 95);
+---
+<table class="band-table">
+  <thead><tr><th>Peptide</th><th>Vial</th><th>Band</th></tr></thead>
+  <tbody>
+    {list.map((p) => {
+      const b = band(p.priceLow, p.priceHigh, place);
+      return <tr><td>{p.name}</td><td class="mono">{p.vial}</td><td>{b.compact}</td></tr>;
+    })}
+  </tbody>
+</table>
+<p class="mono">Prices move with batch. Last verified {new Date().toISOString().slice(0, 10)}. Currency {place.currencyCode}.</p>

@@ -1,0 +1,57 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import { breadcrumbs } from "../lib/schema";
+---
+<Base
+  title="Batch COAs — Third-Party Lab Certificates on File"
+  description="Every batch on this desk carries a third-party certificate of analysis with the lab name and batch ID. Ask for the COA on the exact batch you are quoted."
+  path="/coa/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "COA", url: "/coa/" }])]}
+>
+  <p class="eyebrow">Third-party · Per batch · Matching IDs</p>
+  <h1>Batch COAs</h1>
+  <p class="lede">
+    Every vial leaves here with a batch number, and every batch has a certificate of analysis from an
+    independent lab. No batch, no sale. The COA is a PDF, it carries the lab's own reference, and the batch ID
+    on it matches the vial in your hand.
+  </p>
+
+  <h2>What is on a COA here</h2>
+  <ul>
+    <li>Lab name and its own report reference.</li>
+    <li>The batch ID, identical to the one printed on the vial.</li>
+    <li>Identity confirmation and purity figure by HPLC.</li>
+    <li>Mass-spec confirmation where the lab runs it.</li>
+    <li>Fill weight and appearance.</li>
+    <li>Date of analysis.</li>
+  </ul>
+
+  <h2>How to get yours</h2>
+  <p>
+    Ask in the chat before you pay. You get the COA for the exact batch being quoted, not a stock sample. If the
+    batch changes between quote and dispatch, you get the new COA before dispatch, unprompted.
+  </p>
+
+  <h2>How to read one</h2>
+  <p>
+    Purity is an HPLC percentage and anything under 98 is worth a question. Identity should be a confirmed match,
+    not "consistent with". A COA with no batch ID is decoration. A COA with a batch ID that does not match your
+    vial is worse than none, because it means the paperwork and the product came from different places.
+  </p>
+
+  <h2>Why this is the whole argument</h2>
+  <p>
+    Peptides are cheap to fake and expensive to test. The COA is the only part of the transaction you can check
+    independently of the seller's word. It is also the reason a Telegram desk beats a webshop here: on a webshop
+    the COA is a stock image on a product page, if it exists at all. Here it is a specific document for a
+    specific batch, sent before payment.
+  </p>
+
+  <CTA
+    src="/coa/"
+    label="COA page"
+    heading="Ask for a batch COA now"
+    body="Name the peptide. You get the batch ID and its COA before you are asked for anything."
+  />
+</Base>

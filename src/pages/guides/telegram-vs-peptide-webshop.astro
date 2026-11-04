@@ -1,0 +1,65 @@
+---
+import Base from "../../layouts/Base.astro";
+import CTA from "../../components/CTA.astro";
+import { breadcrumbs } from "../../lib/schema";
+---
+<Base
+  title="Telegram vs Peptide Webshop — Real Cost Difference"
+  description="A webshop adds card fees, affiliate commission and warehouse overhead to the same vial. Here is the actual arithmetic, and where a webshop still wins."
+  path="/guides/telegram-vs-peptide-webshop/"
+  schema={[breadcrumbs([{ name: "Home", url: "/" }, { name: "Guides", url: "/guides/telegram-vs-peptide-webshop/" }])]}
+>
+  <p class="eyebrow">Guide · Cost arithmetic</p>
+  <h1>Telegram vs peptide webshop</h1>
+  <p class="lede">
+    The same vial, the same lab, two channels. One costs 18 to 26. The other costs 40 to 55. This is where the
+    difference comes from and it is not margin.
+  </p>
+
+  <h2>The cost stack on a webshop</h2>
+  <ul>
+    <li>Card processing: 1.4 to 2.9 percent plus a fixed fee, and peptides are high-risk, so add a surcharge.</li>
+    <li>Affiliate commission: 15 to 25 percent on a lot of stores.</li>
+    <li>Warehouse and pick-pack labour: a fixed cost per order regardless of size.</li>
+    <li>Cart abandonment software, review app, email platform: fixed monthly, spread over orders.</li>
+    <li>Returns and reships, budgeted at 3 to 6 percent of revenue.</li>
+  </ul>
+  <p>
+    Add that to a 20 euro vial and you get 40 to 55 euro. It is not the dealer being greedy. It is the channel.
+  </p>
+
+  <h2>What Telegram removes</h2>
+  <p>
+    Card fees on most orders, the affiliate layer entirely, and the pick-pack labour that a one-message order
+    eliminates. What it does not remove is the COA, the cold pack, the reship policy or the dispatch time. Those
+    are the costs worth paying for.
+  </p>
+
+  <h2>Where a webshop still wins</h2>
+  <ul>
+    <li>Browsing a catalogue with filters, if you do not know what you want.</li>
+    <li>Buying at 3am with no reply until morning.</li>
+    <li>Card-only buyers who will not touch a transfer.</li>
+    <li>Buyers who need a formal invoice for a business.</li>
+  </ul>
+
+  <h2>The one thing a webshop cannot give you</h2>
+  <p>
+    A COA for the exact batch, before payment. On a webshop the COA is a stock image on a product page, if it
+    exists. You cannot ask it a question. On Telegram you get the document for the batch you were quoted, and if
+    the batch changes, you get the new one before dispatch.
+  </p>
+
+  <h2>The honest summary</h2>
+  <p>
+    If you want to browse and pay by card at 3am, use a webshop and pay 40 to 55. If you want the batch COA before
+    payment at 18 to 26, send a message. Most people who try the second do not go back.
+  </p>
+
+  <CTA
+    src="/guides/telegram-vs-peptide-webshop/"
+    label="Guide webshop"
+    heading="See the difference on a real quote"
+    body="Name one peptide. Compare the number against any webshop you like."
+  />
+</Base>
