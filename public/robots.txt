@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://peptidesontelegram.com/sitemap-index.xml
+Sitemap: https://www.telegramsource.co/sitemap-index.xml

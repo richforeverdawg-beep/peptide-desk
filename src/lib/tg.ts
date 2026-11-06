@@ -1,6 +1,6 @@
 export const HANDLE = "donjuanjodyy";
 export const CHANNEL = "ThePeptideDesk";
-export const SITE = "https://peptidesontelegram.com";
+export const SITE = "https://www.telegramsource.co";
 
 export function tg(src: string, msg: string): string {
   const text = encodeURIComponent(msg);
