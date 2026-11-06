@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from "node:fs";
 
 const KEY = "9f2c7a4b8e1d6350a2c4e6f8b0d2a4c6";
-const HOST = "peptidesontelegram.com";
+const HOST = "www.telegramsource.co";
 
 const files = [
   "dist/sitemap-0.xml",
