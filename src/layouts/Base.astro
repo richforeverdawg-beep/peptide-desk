@@ -22,7 +22,7 @@ const {
   description,
   path,
   schema = [],
-  image = "/img/desk.webp",
+  image,
   imageAlt = "The Peptide Desk cold-chain vial pack",
   stickySrc = path,
   noindex = false,
@@ -51,8 +51,12 @@ const canonical = SITE + path;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={SITE + image} />
-    <meta property="og:image:alt" content={imageAlt} />
+    {image && (
+      <>
+        <meta property="og:image" content={SITE + image} />
+        <meta property="og:image:alt" content={imageAlt} />
+      </>
+    )}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

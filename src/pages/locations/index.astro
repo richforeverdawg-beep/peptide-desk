@@ -1,0 +1,35 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { countries } from "../../data/places";
+import { breadcrumbs } from "../../lib/schema";
+
+const path = "/locations/";
+const items = [
+  { name: "Home", url: "/" },
+  { name: "Locations", url: path },
+];
+---
+
+<Base
+  title="Locations — The Peptide Desk"
+  description="Browse country pages and shipping information on The Peptide Desk."
+  path={path}
+  schema={[breadcrumbs(items)]}
+>
+  <Breadcrumbs items={items} />
+  <section>
+    <h1>Locations</h1>
+    <p class="lede">Choose a country to view its existing shipping information.</p>
+    <div class="grid grid--3">
+      {countries.map((country) => (
+        <a
+          class="card"
+          href={country.hub ? `/locations/${country.slug}/` : `/buy/bpc-157-on-telegram-in-${country.slug}/`}
+        >
+          {country.name}
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
