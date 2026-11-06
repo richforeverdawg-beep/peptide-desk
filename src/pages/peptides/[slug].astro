@@ -5,7 +5,7 @@ import CTA from "../../components/CTA.astro";
 import FAQ from "../../components/FAQ.astro";
 import CompareTable from "../../components/CompareTable.astro";
 import SiblingLinks from "../../components/SiblingLinks.astro";
-import { pillars, bySlug } from "../../data/peptides";
+import { peptides, bySlug } from "../../data/peptides";
 import { countries, hubs } from "../../data/places";
 import { band } from "../../lib/pricing";
 import { orderLink } from "../../lib/tg";
@@ -15,7 +15,7 @@ import { breadcrumbs, faqPage, offer } from "../../lib/schema";
 export const prerender = true;
 
 export function getStaticPaths() {
-  return pillars.map((p) => ({ params: { slug: p.slug }, props: { peptide: p } }));
+  return peptides.map((p) => ({ params: { slug: p.slug }, props: { peptide: p } }));
 }
 
 const { peptide } = Astro.props;

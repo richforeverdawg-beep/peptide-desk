@@ -78,7 +78,6 @@ const faqs = [
 const schema = [
   breadcrumbs([
     { name: "Home", url: "/" },
-    { name: "Buy", url: "/buy/" },
     { name: peptide.name, url: `/peptides/${peptide.slug}/` },
     { name: place.name, url: path },
   ]),
@@ -210,7 +209,7 @@ const label = `${peptide.name} to ${place.name}`;
 
   <SiblingLinks
     title={`Other peptides shipped to ${place.name}`}
-    links={peptides
+    links={(isCity ? cityPeptides : peptides)
       .filter((p) => p.slug !== peptide.slug)
       .slice(0, 6)
       .map((p) => ({ name: `${p.name} in ${place.name}`, url: `/buy/${p.slug}-on-telegram-in-${place.slug}/` }))}
