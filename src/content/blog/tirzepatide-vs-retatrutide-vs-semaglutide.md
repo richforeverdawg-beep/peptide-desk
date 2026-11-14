@@ -3,7 +3,7 @@ title: "Tirzepatide vs Retatrutide vs Semaglutide: Real Differences"
 description: "Receptor targets, trial results, cost per mg and approval status compared — what actually separates these three, and which one suits a first order."
 author: "DAVID .T"
 pubDate: "2026-11-14"
-draft: true
+draft: false
 ---
 
 These three get lumped together because all are injected, all are weekly, and all are bought for the same reason. They are not the same class of thing.
