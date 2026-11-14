@@ -1,7 +1,7 @@
 ---
 title: "Tirzepatide vs Retatrutide vs Semaglutide: Real Differences"
 description: "Receptor targets, trial results, cost per mg and approval status compared — what actually separates these three, and which one suits a first order."
-author: "Unassigned draft — replace before publishing"
+author: "DAVID .T"
 pubDate: "2026-11-14"
 draft: true
 ---

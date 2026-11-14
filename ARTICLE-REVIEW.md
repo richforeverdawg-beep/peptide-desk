@@ -3,8 +3,8 @@
 The draft is now at `src/content/blog/tirzepatide-vs-retatrutide-vs-semaglutide.md`.
 It intentionally retains `draft: true`. Its previous nested folder was ignored by
 the blog loader. Metadata now uses `pubDate`; the route supplies the H1, so the
-duplicate Markdown H1 was removed. The author is explicitly unassigned, not a
-claimed author. Replace it with the genuine author before publication.
+duplicate Markdown H1 was removed. The author name is `DAVID .T`, supplied by the site owner. No professional
+credentials or medical-review status are claimed.
 
 ## Required editorial review
 
@@ -23,7 +23,7 @@ claimed author. Replace it with the genuine author before publication.
 - Remove price-per-milligram recommendations as a basis for medical choice and the
   sales CTA promoting an unapproved compound for personal use.
 - Replace the buyer-oriented description with a neutral summary after rewriting.
-- Supply the real author name and actual publication/review dates.
+- Confirm actual publication/review dates; the supplied author name is DAVID .T.
 
 Only after those checks should `draft` become `false`. Keeping the draft in a
 public GitHub repository does not make its source private. No automatic IndexNow
