@@ -1,0 +1,31 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { getPublishedPosts, formatPostDate } from "../../lib/blog";
+
+const posts = await getPublishedPosts();
+---
+<Base
+  title="Blog — The Peptide Desk"
+  description="Articles and updates from The Peptide Desk."
+  path="/blog/"
+  noindex={posts.length === 0}
+>
+  <Breadcrumbs items={[{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }]} />
+  <section>
+    <h1>Blog</h1>
+    {posts.length === 0 ? (
+      <p class="lede">No articles published yet. Check back for updates.</p>
+    ) : (
+      <div class="grid grid--3">
+        {posts.map((post) => (
+          <a class="card" href={`/blog/${post.id}/`}>
+            <h2>{post.data.title}</h2>
+            <p class="mono"><time datetime={post.data.pubDate.toISOString()}>{formatPostDate(post.data.pubDate)}</time> · {post.data.author}</p>
+            <p>{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>
