@@ -1,13 +1,10 @@
 ---
 title: "Tirzepatide vs Retatrutide vs Semaglutide: Real Differences"
-slug: "tirzepatide-vs-retatrutide-vs-semaglutide"
 description: "Receptor targets, trial results, cost per mg and approval status compared — what actually separates these three, and which one suits a first order."
-publishDate: 2026-11-14
+author: "DAVID .T"
+pubDate: "2026-11-14"
 draft: true
-reviewBy: 2026-12-14
 ---
-
-# Tirzepatide vs retatrutide vs semaglutide: the differences that actually matter
 
 These three get lumped together because all are injected, all are weekly, and all are bought for the same reason. They are not the same class of thing.
 
