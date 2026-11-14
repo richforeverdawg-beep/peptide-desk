@@ -1,0 +1,44 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { getPublishedPosts, formatPostDate } from "../../lib/blog";
+import { SITE } from "../../lib/tg";
+
+export async function getStaticPaths() {
+  return (await getPublishedPosts()).map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const path = `/blog/${post.id}/`;
+const schema = [{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  author: { "@type": "Person", name: post.data.author },
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.updatedDate ? { dateModified: post.data.updatedDate.toISOString() } : {}),
+  mainEntityOfPage: SITE + path,
+}];
+---
+<Base title={`${post.data.title} — Blog`} description={post.data.description} path={path} schema={schema}>
+  <Breadcrumbs items={[{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }, { name: post.data.title, url: path }]} />
+  <article>
+    <header class="post-header">
+      <h1>{post.data.title}</h1>
+      <p class="mono">By {post.data.author} · Published <time datetime={post.data.pubDate.toISOString()}>{formatPostDate(post.data.pubDate)}</time></p>
+      {post.data.updatedDate && <p class="mono">Updated <time datetime={post.data.updatedDate.toISOString()}>{formatPostDate(post.data.updatedDate)}</time></p>}
+      <p class="lede">{post.data.description}</p>
+    </header>
+    <div class="post-content"><Content /></div>
+    <p><a href="/blog/">← All articles</a></p>
+  </article>
+</Base>
+
+<style>
+  article { max-width: 72ch; margin: 24px auto; overflow-wrap: anywhere; }
+  .post-content :global(pre) { overflow-x: auto; padding: 16px; background: var(--grey); }
+  .post-content :global(blockquote) { margin-left: 0; padding-left: 16px; border-left: 3px solid var(--line); }
+</style>
