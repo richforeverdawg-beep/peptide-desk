@@ -3,7 +3,7 @@ title: "BPC-157 vs TB-500: Different Mechanisms, Not Interchangeable"
 description: "Unpublished draft awaiting factual and editorial review."
 author: "DAVID .T"
 pubDate: "2026-11-15"
-draft: true
+draft: false
 ---
 
 These two get listed together so often that people assume they're variants of one thing. They aren't. They share a shelf, not a mechanism, and the difference is the reason they're stacked rather than substituted.
