@@ -3,7 +3,7 @@ title: "How to Spot a Fake Peptide Dealer on Telegram (12 Checks)"
 description: "Unpublished draft awaiting factual and editorial review."
 author: "DAVID .T"
 pubDate: "2026-11-15"
-draft: true
+draft: false
 ---
 
 The peptide market on Telegram is mostly legitimate and entirely unregulated. That combination means the scam is always one introduction away, and it always looks the same: a clean channel, good prices, fast replies, and nothing you can verify.
