@@ -1,4 +1,10 @@
-# Peptide Dosage Maths: mcg, mg, mL and Insulin Syringe Units
+---
+title: "Peptide Dosage Maths: mcg, mg, mL and Insulin Syringe Units"
+description: "Unpublished draft awaiting factual and editorial review."
+author: "DAVID .T"
+pubDate: "2026-11-15"
+draft: true
+---
 
 "Draw 10 units" means nothing on its own. Ten units of a 2,500 mcg/mL solution is 250 mcg. Ten units of a 10,000 mcg/mL solution is 1,000 mcg — four times as much, same barrel mark.
 

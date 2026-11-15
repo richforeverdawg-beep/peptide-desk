@@ -1,4 +1,10 @@
-# Peptides That Aren't Worth Buying (and What to Get Instead)
+---
+title: "Peptides That Aren't Worth Buying (and What to Get Instead)"
+description: "Unpublished draft awaiting factual and editorial review."
+author: "DAVID .T"
+pubDate: "2026-11-15"
+draft: true
+---
 
 Every peptide list online is a sales page. Nothing is ever described as a bad idea, which is strange, because half of the catalogue is the wrong purchase for most people.
 

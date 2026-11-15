@@ -1,4 +1,10 @@
-# Peptide Storage: Fridge, Freezer and How Long a Vial Lasts
+---
+title: "Peptide Storage: Fridge, Freezer and How Long a Vial Lasts"
+description: "Unpublished draft awaiting factual and editorial review."
+author: "DAVID .T"
+pubDate: "2026-11-15"
+draft: true
+---
 
 A dry vial and a mixed vial are two different storage problems, and the rules that protect one can destroy the other.
 

@@ -1,4 +1,10 @@
-# How to Read a Peptide COA (and Spot a Fabricated One)
+---
+title: "How to Read a Peptide COA (and Spot a Fabricated One)"
+description: "Unpublished draft awaiting factual and editorial review."
+author: "DAVID .T"
+pubDate: "2026-11-15"
+draft: true
+---
 
 A certificate of analysis is the only document that tells you what is in a vial. It's also trivially easy to fake, which is why half the COAs floating around Telegram are screenshots of Word documents with no lab behind them.
 
