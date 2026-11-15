@@ -3,7 +3,7 @@ title: "Tirzepatide Vial vs Mounjaro Pen: What Actually Differs"
 description: "Unpublished draft awaiting factual and editorial review."
 author: "DAVID .T"
 pubDate: "2026-11-15"
-draft: true
+draft: false
 ---
 
 Tirzepatide is the molecule in both. That's where the similarity ends.
