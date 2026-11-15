@@ -3,7 +3,7 @@ title: "Peptide Troubleshooting: Cloudy, Won't Dissolve, Gelled, Stings"
 description: "Unpublished draft awaiting factual and editorial review."
 author: "DAVID .T"
 pubDate: "2026-11-15"
-draft: true
+draft: false
 ---
 
 Five things go wrong with a vial and four of them have the same three causes. This is the diagnostic order, and what each outcome actually means.
