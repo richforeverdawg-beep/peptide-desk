@@ -1,4 +1,10 @@
-# How Much Does Tirzepatide Cost Per Month? (EU, 2026)
+---
+title: "How Much Does Tirzepatide Cost Per Month? (EU, 2026)"
+description: "Unpublished draft awaiting factual and editorial review."
+author: "DAVID .T"
+pubDate: "2026-11-15"
+draft: true
+---
 
 Cost per month is the number people actually want, and it's the number every dealer avoids because it exposes them. So here it is, with the arithmetic shown.
 

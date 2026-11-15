@@ -1,4 +1,10 @@
-# How to Reconstitute a Peptide Vial Without Ruining It
+---
+title: "How to Reconstitute a Peptide Vial Without Ruining It"
+description: "Unpublished draft awaiting factual and editorial review."
+author: "DAVID .T"
+pubDate: "2026-11-15"
+draft: true
+---
 
 A lyophilised vial is a cake of powder. Until you add water it is stable for months at room temperature. The moment you add water it becomes a solution with a countdown on it, and every handling error from that point forward is permanent.
 
