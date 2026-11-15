@@ -3,7 +3,7 @@ title: "Semaglutide Vial vs Ozempic: Same Molecule, Different Rules"
 description: "Unpublished draft awaiting factual and editorial review."
 author: "DAVID .T"
 pubDate: "2026-11-15"
-draft: true
+draft: false
 ---
 
 Ozempic is the licensed Novo Nordisk pen. A research vial is lyophilised semaglutide from a synthesis lab. Same peptide sequence. Everything about the product around it differs.
