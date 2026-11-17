@@ -3,6 +3,11 @@
   "cleanUrls": false,
   "redirects": [
     {
+      "source": "/peptides/Tirzepatide/",
+      "destination": "/peptides/tirzepatide/",
+      "permanent": true
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "/sitemap-index.xml",
       "permanent": true
